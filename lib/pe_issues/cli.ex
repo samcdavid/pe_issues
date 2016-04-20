@@ -41,7 +41,7 @@ defmodule PeIssues.CLI do
   end
 
   def process({ user, project, count }) do
-    PeIssues.GitubIssues.fetch(user, project)
+    PeIssues.GithubIssues.fetch(user, project)
     |> decode_response
     |> convert_to_list_of_hashdicts
     |> sort_into_ascending_order
@@ -51,8 +51,7 @@ defmodule PeIssues.CLI do
   def decode_response({ :ok, body }), do: body
 
   def decode_response({ :error, error }) do
-    { _, message } = List.keyfind(error, "message", 0)
-    IO.puts "Error fetching from Gitub: #{message}"
+    IO.puts "Error fetching from Gitub: #{error}"
     System.halt(2)
   end
 
