@@ -1,4 +1,5 @@
 defmodule PeIssues.CLI do
+  import PeIssues.TableFormatter, only: [ print_table_for_columns: 2 ]
   @default_count 4
 
   @moduledoc """
@@ -46,6 +47,7 @@ defmodule PeIssues.CLI do
     |> convert_to_list_of_hashdicts
     |> sort_into_ascending_order
     |> Enum.take(count)
+    |> print_table_for_columns(["number", "created_at", "title"])
   end
 
   def decode_response({ :ok, body }), do: body
