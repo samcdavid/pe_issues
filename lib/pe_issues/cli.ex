@@ -51,7 +51,7 @@ defmodule PeIssues.CLI do
   def decode_response({ :ok, body }), do: body
 
   def decode_response({ :error, error }) do
-    IO.puts "Error fetching from Gitub: #{error}"
+    IO.puts "Error fetching from Github: #{error}"
     System.halt(2)
   end
 
